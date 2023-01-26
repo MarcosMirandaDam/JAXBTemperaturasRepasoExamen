@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2023 (x64) (http://www.altova.com) by  (IES Juan Jose Calvo Miguel) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+	<xs:element name="dataTemSystem">
+		<xs:annotation>
+			<xs:documentation>Data temp stations</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="owner" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ownerID" type="xs:string"/>
+							<xs:element name="name" type="xs:string"/>
+							<xs:element name="email" type="xs:string"/>
+							<xs:element name="phone" type="xs:string"/>
+							<xs:element name="sensor" type="sensorType"/>
+							<xs:element name="country"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="serverRegion" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="serverRegionName" type="xs:string"/>
+							<xs:element name="sensor" type="sensorType" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="sensorModel" type="sensorModelType" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="sensorType">
+		<xs:sequence>
+			<xs:element name="sensorID" type="xs:integer"/>
+			<xs:element name="ownerID" type="xs:integer"/>
+			<xs:element name="modelCode" type="xs:string"/>
+			<xs:element name="data" type="dataType" maxOccurs="unbounded"/>
+			<xs:element name="location" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="dataType">
+		<xs:sequence>
+			<xs:element name="date" type="xs:date"/>
+			<xs:element name="year" type="xs:integer"/>
+			<xs:element name="temperature" type="xs:float"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="sensorModelType">
+		<xs:sequence>
+			<xs:element name="modelCode" type="xs:string"/>
+			<xs:element name="modelName" type="xs:string"/>
+			<xs:element name="manufacturer" type="xs:string"/>
+			<xs:element name="minTemperatureRange" type="xs:float"/>
+			<xs:element name="maxTemperatureRange" type="xs:float"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
